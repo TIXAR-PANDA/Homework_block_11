@@ -1,19 +1,22 @@
 from pprint import pprint
 import inspect
+
 def introspection_info(obj):
     """
   - Тип объекта.
   - Информация от разработчика.
-  - Все доступные атрибуты и методы объекта.
+  - Атрибуты объекта
+  - Методы объекта.
   - Модуль, к которому объект принадлежит"""
     print(f'Тип объекта - {type(obj)}')
     print('Информация от разработчика: ')
     print(help(obj))
-    print('Все атрибуты и методы объекта: ')
-    pprint(dir(obj))
+    print('Атрибуты объекта: ')
+    pprint(vars(obj))
+    print('Методы объекта: ')
+    pprint(inspect.getmembers(obj, predicate=inspect.ismethod))
     print('Модуль, к которому объект принадлежит: ')
     print( inspect.getmodule(obj))
-
 
 class Vehicle1:
     """ (см. домашнюю работу Homework - module_6_1.py)
@@ -74,6 +77,8 @@ class Sedan(Vehicle1):
     """  Sedan(седан) - наследник класса Vehicle
      (см. домашнюю работу Homework - module_6_1.py)"""
     __PASSENGERS_LIMIT = 5
+
+
 
 
 vehicle2 = Sedan('Федот', 'Toyota Mark II', 500, 'синий')
